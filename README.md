@@ -45,3 +45,27 @@ openssl使用配置文件生成server和client证书
 # 修改参数
 直接修改`createcert.sh`文件的用户自定义部分内容,然后重新执行,生成新的证书.
  
+
+# 本人修改
+## 将原来的这个地方替换成自己的内容。对应
+```
+[ testca_policy ]
+commonName = ohsp
+stateOrProvinceName = Hubei
+countryName = WuHan
+emailAddress = ssl@ohsp.org
+organizationName = OpenHostSecurityProject
+organizationalUnitName = OHSP
+domainComponent = http.example.com
+```
+
+## 部分测试
+
+```bash 
+
+## 测试证书
+openssl verify -CAfile myca/root/cacert.pem ./myca/server/cert.pem
+```
+
+## 修改脚本中的内容
+- 最后一部分。进行重复备份。

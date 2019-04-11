@@ -67,4 +67,11 @@ cd $CLIENT
 openssl pkcs12 -export -out keycert.p12 -in cert.pem -inkey key.pem -passout pass:$p12Passwd
 
 
+## 将生成的证书备份到特定的目录。
+uniq_time=$(date -d "today" +%Y%m%d%H%M%S)
+input_md5=$(echo -n $1 | md5sum | awk '{print $1}')
 
+new_dir=${BASIC}/CA_${uniq_time}_${input_md5}
+mkdir -p $new_dir
+
+mv $BASIC/myca $new_dir
